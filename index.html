@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title></title>
+        <style type="text/css">
+                .flower{position: absolute; left: 0; top: 0;}
+                #poetText{font-family: 'Noto serif KR', serif; z-index: 9; position: absolute; left: 380px; top:  100px; font-size: 2rem; font-weight: medieum;}
+                .word{opacity: 0; animation: fadein 1s forwards;}
+                @keyframes fadein{
+                        to{opacity: 1;}        
+                }
+        </style>
+</head>
+<body>
+        <div id="poetText"></div>
+        <script type="text/javascript">
+                   var a = ["flower","flower2","flower3"]
+
+
+           for(var i=0;i<100;i++){
+                  var t = document.createElement("img");
+            t.src = a[randomBH(0,2)] + ".png";
+            t.className = "flower"
+            t.style.width = randomBH(100,150) + "px";
+            t.style.height = "auto";
+            t.style.left = Math.random()*screen.availWidth + "px";
+            t.style.top = Math.random()*screen.availHeight + "px";
+            document.body.appendChild(t);
+           }
+
+           var poet = "꽃<br> 김춘수<br> <br> 내가 그의 이름을 불러 주기 전에는<br> 그는 다만<br> 하나의 몸짓에 지나지 않았다.<br> <br> 내가 그의 이름을 불러 주었을 때<br> 그는 나에게로 와서<br> 꽃이 되었다.<br> <br> 내가 그의 이름을 불러 준 것처럼<br> 나의 이 빛깔과 향기에 알맞은<br> 누가 나의 이름을 불러 다오.<br> 그에게로 가서 나도<br> 그의 꽃이 되고 싶다.<br> <br> 우리들은 모두<br> 무엇이 되고 싶다.<br> 너는 나에게 나는 너에게<br> 잊혀지지 않는 하나의 향기가 되고 싶다.<br> <br>";
+            var poetArr = poet.split(" ");
+
+            var myTimer = setInterval(print,500);
+            var s=0;
+            function print(){
+                var t = document.createElement("span");
+                t.innerHTML = poetArr[s] + " ";
+                t.className = "word";
+                s++;
+                poetText.appendChild(t);
+
+                if(s == poetArr.length){
+                        clearInterval(myTimer);
+                }
+            }
+
+
+            function randomBH(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+
+        </script>
+</body>
+</html>
